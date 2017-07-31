@@ -3,21 +3,25 @@ describe 'discussion tags', ->
 
   describe 'creating a tag', ->
     it 'can create a tag for a group and a discussion', ->
-      page.loadPath 'setup_experimental_group'
-      page.click  '.discussion-tag-dropdown__button'
-      page.click  '.discussion-tag-dropdown__label'
+      page.loadPath 'setup_group_on_paid_plan'
+      page.click '.tag-form__create-tag'
       page.fillIn '.tag-form__name', 'Tag Name'
       page.click  '.tag-form__submit'
-      page.expectText '.discussion-tag-dropdown__list', 'Tag Name'
+      page.expectText '.tag-list__link', 'Tag Name'
 
     it 'fetches tags when loading tags page', ->
       page.loadPath 'visit_tags_page'
       page.expectText '.thread-preview__text-container', 'This thread is public'
 
-    it 'can create a discussion tag for a discussion', ->
-      page.loadPath 'setup_discussion_with_tag'
-      page.click '.discussion-tag-dropdown__button'
-      page.click '.discussion-tag-dropdown__tag'
+    fit 'can create a discussion tag for a discussion', ->
+      page.loadPath 'setup_group_on_paid_plan'
+      page.click '.tag-form__create-tag'
+      page.fillIn '.tag-form__name', 'Tag Name'
+      page.click  '.tag-form__submit'
+      page.clickFirst '.thread-preview__link'
+
+      page.click '.tag-dropdown__button'
+      page.click '.tag-list__toggle'
       page.expectText '.thread-tag', 'Tag Name'
 
     it 'serializes tags in the inbox', ->
