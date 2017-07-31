@@ -24,6 +24,10 @@ describe 'discussion tags', ->
       page.click '.tag-list__toggle'
       page.expectText '.thread-tag', 'Tag Name'
 
+    it 'does not allow non-coordinators to create tags', ->
+      page.loadPath 'setup_group_on_paid_plan_as_non_coordinator'
+      page.expectNoElement '.tag-form__create-tag'
+
     it 'serializes tags in the inbox', ->
       page.loadPath 'setup_inbox_with_tag'
       page.expectText '.thread-tag', 'Tag Name'

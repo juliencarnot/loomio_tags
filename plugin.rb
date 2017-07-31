@@ -40,7 +40,7 @@ module Plugins
         end
 
         plugin.extend_class User do
-          has_many :tags, through: :groups
+          has_many :tags, through: :formal_groups
         end
 
         plugin.extend_class PermittedParams do
