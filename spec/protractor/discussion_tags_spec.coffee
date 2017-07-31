@@ -13,7 +13,7 @@ describe 'discussion tags', ->
       page.loadPath 'visit_tags_page'
       page.expectText '.thread-preview__text-container', 'This thread is public'
 
-    fit 'can create a discussion tag for a discussion', ->
+    it 'can create a discussion tag for a discussion', ->
       page.loadPath 'setup_group_on_paid_plan'
       page.click '.tag-form__create-tag'
       page.fillIn '.tag-form__name', 'Tag Name'
