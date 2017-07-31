@@ -20,7 +20,7 @@ module Plugins
         plugin.use_class_directory 'models'
 
         plugin.use_factory :tag do
-          group
+          association :group, factory: :formal_group
           name "metatag"
           color "#656565"
         end

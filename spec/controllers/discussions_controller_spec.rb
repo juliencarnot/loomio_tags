@@ -3,8 +3,8 @@ require 'rails_helper'
 describe ::API::DiscussionsController, type: :controller do
 
   let(:user) { create :user }
-  let(:public_group) { create :group, is_visible_to_public: true }
-  let(:group) { create :group, is_visible_to_public: false }
+  let(:public_group) { create :formal_group, is_visible_to_public: true }
+  let(:group) { create :formal_group, is_visible_to_public: false }
   let(:tag) { create :tag, group: group }
   let(:discussion) { create :discussion, group: group }
   let!(:discussion_tag) { create :discussion_tag, discussion: discussion, tag: tag }
