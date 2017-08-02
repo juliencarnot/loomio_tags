@@ -20,7 +20,7 @@ module Plugins
         plugin.use_class_directory 'models'
 
         plugin.use_factory :tag do
-          group
+          association :group, factory: :formal_group
           name "metatag"
           color "#656565"
         end
@@ -35,12 +35,12 @@ module Plugins
           has_many :tags, through: :discussion_tags
         end
 
-        plugin.extend_class Group do
-          has_many :tags
+        plugin.extend_class FormalGroup do
+          has_many :tags, foreign_key: :group_id
         end
 
         plugin.extend_class User do
-          has_many :tags, through: :groups
+          has_many :tags, through: :formal_groups
         end
 
         plugin.extend_class PermittedParams do
@@ -150,7 +150,6 @@ module Plugins
 
         plugin.use_test_route :setup_discussion_with_tag do
           tag = Tag.create(name: "Tag Name", color: "#cccccc", group: create_discussion.group)
-          create_discussion.group.update(enable_experiments: true)
           sign_in patrick
           redirect_to discussion_url(create_discussion)
         end
@@ -158,13 +157,12 @@ module Plugins
         plugin.use_test_route :setup_inbox_with_tag do
           tag = Tag.create(name: "Tag Name", color: "#cccccc", group: create_discussion.group)
           discussion_tag = DiscussionTag.create(discussion: create_discussion, tag: tag)
-          create_discussion.group.update(enable_experiments: true)
           sign_in patrick
           redirect_to inbox_url
         end
 
         plugin.use_test_route :view_discussion_as_visitor_with_tags do
-          group = Group.create!(name: 'Open Dirty Dancing Shoes', group_privacy: 'open', enable_experiments: true)
+          group = FormalGroup.create!(name: 'Open Dirty Dancing Shoes', group_privacy: 'open', enable_experiments: true)
           group.add_admin! patrick
           discussion = group.discussions.create!(title: 'This thread is public', private: false, author: patrick)
           tag = group.tags.create(name: "Tag Name", color: "#cccccc")
@@ -173,7 +171,7 @@ module Plugins
         end
 
         plugin.use_test_route :visit_tags_page do
-          group = Group.create!(name: 'Open Dirty Dancing Shoes', group_privacy: 'open', enable_experiments: true)
+          group = FormalGroup.create!(name: 'Open Dirty Dancing Shoes', group_privacy: 'open', enable_experiments: true)
           group.add_admin! patrick
           discussion = group.discussions.create!(title: 'This thread is public', private: false, author: patrick)
           tag = group.tags.create(name: "Tag Name", color: "#cccccc")

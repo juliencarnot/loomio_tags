@@ -1,7 +1,6 @@
 angular.module('loomioApp').directive 'tagCard', ($location, AppConfig, Records, ModalService, TagModal, AbilityService, LoadingService) ->
   scope: {group: '='}
   templateUrl: 'generated/components/tag_card/tag_card.html'
-  replace: true
   controller: ($scope) ->
     $scope.parent = $scope.group.parentOrSelf()
 
@@ -9,6 +8,10 @@ angular.module('loomioApp').directive 'tagCard', ($location, AppConfig, Records,
       Records.tags.fetchByGroup($scope.parent)
     LoadingService.applyLoadingFunction $scope, 'init'
     $scope.init()
+
+    $scope.showTagCard = ->
+      $scope.canAdministerGroup() or
+      _.any(Records.tags.find(groupId: $scope.parent.id))
 
     $scope.openTagForm = ->
       ModalService.open TagModal, tag: ->
