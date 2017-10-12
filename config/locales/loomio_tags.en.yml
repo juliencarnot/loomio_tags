@@ -1,6 +1,9 @@
 en:
+  action_dock:
+    tag_thread: Manage tags
   loomio_tags:
     tags: Tags
+    apply_tags: Apply tags
     new_tag: Create tag
     tag_created: Tag created successfully
     name_label: Name

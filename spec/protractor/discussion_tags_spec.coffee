@@ -20,8 +20,9 @@ describe 'discussion tags', ->
       page.click  '.tag-form__submit'
       page.clickFirst '.thread-preview__link'
 
-      page.click '.tag-dropdown__button'
+      page.click '.action-dock__button--tag_thread'
       page.click '.tag-list__toggle'
+      page.click '.tag-apply-modal__submit'
       page.expectText '.thread-tag', 'Tag Name'
 
     it 'does not allow non-coordinators to create tags', ->

@@ -141,11 +141,11 @@ module Plugins
         plugin.use_asset_directory 'components/decorators'
 
         plugin.use_component :tag_display, outlet: [:after_thread_title, :after_thread_preview]
-        plugin.use_component :tag_dropdown, outlet: [:before_thread_actions]
         plugin.use_component :tag_card, outlet: [:after_slack_card]
         plugin.use_component :tag_list
         plugin.use_component :tag_form
         plugin.use_component :tag_modal
+        plugin.use_component :tag_apply_modal
         plugin.use_component :destroy_tag_modal
 
         plugin.use_test_route :setup_discussion_with_tag do
