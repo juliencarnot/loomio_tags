@@ -71,15 +71,6 @@ module Plugins
           prepend DiscussionsControllerTags
         end
 
-        plugin.extend_class BootData do
-          module BootDataTags
-            def serializer_scope
-              super.merge(tag_cache: DiscussionTagCache.new(unread.to_a).data)
-            end
-          end
-          prepend BootDataTags
-        end
-
         plugin.extend_class DiscussionSerializer do
           has_many :discussion_tags
 
