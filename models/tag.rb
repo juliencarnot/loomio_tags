@@ -1,4 +1,5 @@
 class Tag < ActiveRecord::Base
+  include CustomCounterCache::Model
   belongs_to :group
   has_many :discussion_tags, dependent: :destroy
   has_many :discussions, through: :discussion_tags
