@@ -1,4 +1,5 @@
 class DiscussionTag < ActiveRecord::Base
+  include CustomCounterCache::Model
   belongs_to :discussion
   belongs_to :tag
   has_one :group, through: :discussion
