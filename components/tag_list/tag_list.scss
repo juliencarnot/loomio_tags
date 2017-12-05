@@ -42,10 +42,6 @@ md-menu-content .tag-list {
   text-align: center;
 }
 
-.tag-list__count {
-  @include fontSmall;
-}
-
 .tag-list__check {
   display: flex;
   width: 48px;

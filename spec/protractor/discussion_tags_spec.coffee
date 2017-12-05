@@ -1,5 +1,5 @@
 describe 'discussion tags', ->
-  page = require '../../../../angular/test/protractor/helpers/page_helper.coffee'
+  page = require '../../../../../angular/test/protractor/helpers/page_helper.coffee'
 
   describe 'creating a tag', ->
     it 'can create a tag for a group and a discussion', ->

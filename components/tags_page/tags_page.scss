@@ -1,5 +1,4 @@
 .tags-page__header {
-  @include fontSmall;
   color: $grey-on-grey;
   padding: 0 $cardPaddingSize;
   line-height: 29px;
@@ -15,7 +14,6 @@
 }
 
 .tags-page__thread-container {
-  @include cardNoPadding;
   margin-bottom: $cardPaddingSize;
   margin-top: $thinPaddingSize;
 }
